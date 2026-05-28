@@ -25,7 +25,7 @@ export default function CypressPage() {
       <PageHeader
         badge="Testes · Semana 1 de 3"
         title="Cypress + Cucumber"
-        description="Semana 1 do trabalho: ative os cenários @todo, veja o Jenkins barrar o deploy, implemente as features, faça os testes passarem e libere o deploy."
+        description="Semana 1 do trabalho: ative os cenários  , veja o Jenkins barrar o deploy, implemente as features, faça os testes passarem e libere o deploy."
       />
 
       {/* ── Visão geral da semana ── */}
@@ -42,7 +42,7 @@ export default function CypressPage() {
               "o pipeline precisa estar rodando antes de qualquer teste.",
             ],
             [
-              "Ative os cenários @todo",
+              "Ative os cenários  ",
               "os arquivos todo-*.feature têm cenários desativados que precisam ser implementados. Ao ativá-los sem implementar as features, o Jenkins vai falhar.",
             ],
             [
@@ -118,13 +118,13 @@ cypress/e2e/manual-expense-form.feature  — 5 cenários: validação do formul�
 cypress/e2e/receipt-upload-panel.feature — 5 cenários: upload e fluxo visual
 cypress/e2e/receipt-extraction-api.feature — 3 cenários: contrato da API`}</CodeBlock>
         </SubSection>
-        <SubSection title="Arquivos @todo que você precisa ativar e implementar:">
+        <SubSection title="Arquivos   que você precisa ativar e implementar:">
           <CodeBlock lang="bash">{`cypress/e2e/todo-create-income-entry.feature  ← Feature 01: entradas
 cypress/e2e/todo-create-expense.feature       ← Feature 02: saídas manuais
 cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</CodeBlock>
           <P>
             Cada um desses arquivos tem cenários marcados com{" "}
-            <Code>@todo</Code> e steps que dizem{" "}
+            <Code> </Code> e steps que dizem{" "}
             <Code>Given pendente de implementacao</Code>. Eles rodam, mas vão
             falhar até você escrever as step definitions reais.
           </P>
@@ -140,7 +140,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
       <Section title="Os 6 cenários obrigatórios do trabalho">
         <P>
           Estes são os cenários que você precisa implementar e fazer passar.
-          Os comentários dentro dos arquivos <Code>@todo</Code> descrevem o
+          Os comentários dentro dos arquivos <Code> </Code> descrevem o
           que cada step deve fazer — sua tarefa é transformar esses comentários
           em código real.
         </P>
@@ -148,7 +148,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
         <SubSection title="1. Cadastro de entrada financeira">
           <CodeBlock lang="gherkin">{`Feature: Criação de entrada financeira no Firestore
 
-  @todo
+   
   Scenario: Salva uma entrada e atualiza o card de entradas
     Given que acesso a pagina inicial
     When seleciono a aba "Entradas"
@@ -166,7 +166,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
         <SubSection title="2. Cadastro de saída manual">
           <CodeBlock lang="gherkin">{`Feature: Criação de saída manual no Firestore
 
-  @todo
+   
   Scenario: Salva uma saida manual com dados validos e exibe na lista
     Given que acesso a pagina inicial
     When seleciono a aba "Saída Manual"
@@ -183,7 +183,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
         </SubSection>
 
         <SubSection title="3. Exclusão de despesa — atualização da lista">
-          <CodeBlock lang="gherkin">{`  @todo
+          <CodeBlock lang="gherkin">{`   
   Scenario: Permite excluir uma saida existente da lista
     Given que existe pelo menos uma despesa cadastrada
     When clico no botao de excluir ao lado da despesa
@@ -195,7 +195,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
         </SubSection>
 
         <SubSection title="4. Confirmação e limpeza do formulário">
-          <CodeBlock lang="gherkin">{`  @todo
+          <CodeBlock lang="gherkin">{`   
   Scenario: Exibe confirmacao e limpa o formulario apos salvar
     Given que acesso a pagina inicial
     When preencho e submeto o formulario de saida manual com dados validos
@@ -207,7 +207,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
         <SubSection title="5. Cadastro via nota fiscal (OCR)">
           <CodeBlock lang="gherkin">{`Feature: Extração de nota fiscal por OCR
 
-  @todo
+   
   Scenario: Extrai dados de uma nota fiscal em PDF e salva como despesa
     Given que acesso a pagina inicial
     And seleciono a aba "Nota Fiscal"
@@ -216,7 +216,7 @@ cypress/e2e/todo-ocr-extraction.feature       ← Feature 03: nota fiscal`}</Cod
     Then a despesa extraida aparece na lista de lancamentos
     And o valor extraido e maior que zero
 
-  @todo
+   
   Scenario: Exibe mensagem de sucesso apos importar a nota fiscal
     Given que acesso a pagina inicial
     And seleciono a aba "Nota Fiscal"
@@ -298,7 +298,7 @@ npm run cypress:run
 # Modo CI (inicia o servidor automaticamente)
 npm run test:e2e:ci`}</CodeBlock>
         <Warning>
-          Para os cenários @todo com Firestore, o app precisa estar com as
+          Para os cenários   com Firestore, o app precisa estar com as
           variáveis <Code>NEXT_PUBLIC_FIREBASE_*</Code> configuradas. Sem elas,
           o Firebase não conecta e os testes falham por razão errada.
         </Warning>
@@ -318,7 +318,7 @@ npm run test:e2e:ci`}</CodeBlock>
             O Jenkins recebe o webhook, inicia o pipeline. As primeiras etapas
             passam (install, unit tests, build). Na etapa{" "}
             <strong>"E2E Tests (Cypress + Cucumber)"</strong>, os cenários{" "}
-            <Code>@todo</Code> rodam e falham. O pipeline marca como{" "}
+            <Code> </Code> rodam e falham. O pipeline marca como{" "}
             <strong>FAILURE</strong>. O stage "Deploy Vercel" não é executado.
           </P>
           <P>

@@ -55,7 +55,7 @@ export default function RelatorioPage() {
       {/* ── Semana 1 ── */}
       <Section title="Semana 1 — Cypress + Cucumber">
         <P>
-          Documente toda a sequência: ativar os cenários <Code>@todo</Code> →
+          Documente toda a sequência: ativar os cenários <Code> </Code> →
           Jenkins falha → implementar features → Jenkins passa → deploy na Vercel.
         </P>
         <SubSection title="Evidências obrigatórias:">
@@ -196,7 +196,7 @@ export default function RelatorioPage() {
             title: "Semana 1 — Cypress + Features",
             items: [
               "Features implementadas: income-entry-service, expense-service, route OCR.",
-              "Sequência do deploy barrado: @todo ativado → Jenkins FAILURE → correção → SUCCESS.",
+              "Sequência do deploy barrado:   ativado → Jenkins FAILURE → correção → SUCCESS.",
               "Evidências da falha intencional (console log + screenshots).",
               "Análise de causa raiz (RCA).",
             ],
@@ -311,7 +311,7 @@ export default function RelatorioPage() {
               "Jenkinsfile completo (incluindo stage Deploy com credenciais)",
               "Screenshots do Firebase configurado",
               "URL pública da aplicação na Vercel",
-              "Os 3 commits centrais: ativação do @todo, implementação, migração",
+              "Os 3 commits centrais: ativação do  , implementação, migração",
             ],
           },
         ].map((group) => (

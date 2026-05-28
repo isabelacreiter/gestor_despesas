@@ -83,7 +83,7 @@ Jenkinsfile                              ← stage Deploy Vercel`}</CodeBlock>
               "O card 'Entradas' atualiza em tempo real (sem reload).",
               "O saldo no header reflete a diferença entradas − despesas.",
               "Recarregar a página mantém os dados.",
-              "Os cenários @todo do todo-create-income-entry.feature passam.",
+              "Os cenários   do todo-create-income-entry.feature passam.",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent-forest)]" />
@@ -126,7 +126,7 @@ Jenkinsfile                              ← stage Deploy Vercel`}</CodeBlock>
               "Deletar despesa remove do Firestore e da lista em tempo real.",
               "O card 'Despesas' atualiza o total automaticamente.",
               "O card 'Lançamentos' atualiza o contador.",
-              "Os cenários @todo do todo-create-expense.feature passam.",
+              "Os cenários   do todo-create-expense.feature passam.",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent-amber)]" />
@@ -342,7 +342,7 @@ return Response.json({
           <P>
             O Jenkins recebeu o webhook e iniciou o pipeline. Install, unit
             tests, build — tudo passou. Na etapa{" "}
-            <strong>"E2E Tests"</strong>, os cenários <Code>@todo</Code> que
+            <strong>"E2E Tests"</strong>, os cenários <Code> </Code> que
             Pedro tinha ativado rodaram — e falharam.
           </P>
           <CodeBlock lang="bash">{`[Cypress] FAIL cypress/e2e/todo-create-expense.feature
@@ -373,7 +373,7 @@ return Response.json({
         <SubSection title="Como reproduzir (sequência obrigatória da Semana 1):">
           <Steps>
             <Step n={1}>
-              Ative os cenários <Code>@todo</Code> escrevendo step definitions
+              Ative os cenários <Code> </Code> escrevendo step definitions
               básicas (que rodem, mas ainda não passem).
             </Step>
             <Step n={2}>
@@ -397,7 +397,7 @@ return Response.json({
       <NextPage
         href="/instrucoes/cypress"
         label="Cypress — Semana 1"
-        description="Os 6 cenários obrigatórios, como ativar os @todo e a sequência de falha → correção."
+        description="Os 6 cenários obrigatórios, como ativar os   e a sequência de falha → correção."
       />
     </div>
   );

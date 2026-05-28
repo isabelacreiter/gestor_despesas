@@ -72,13 +72,13 @@ Estes cenários devem ser implementados e documentados nas **três ferramentas**
 **Sequência obrigatória:**
 
 1. Configure o Jenkins, o Firebase e o webhook do GitHub.
-2. **Ative os cenários `@todo`** nos arquivos Cypress — escreva step definitions básicas antes de implementar as features.
+2. **Ative os cenários ` `** nos arquivos Cypress — escreva step definitions básicas antes de implementar as features.
 3. Faça push. O Jenkins deve falhar no stage `E2E Tests (Cypress + Cucumber)`. **Capture esta evidência.**
 4. Implemente as Features 01 e 02 (veja `/instrucoes/todo`).
 5. Faça os testes passarem localmente: `npm run test:e2e:ci`.
 6. Faça push. Pipeline verde + deploy na Vercel. **Capture esta evidência.**
 
-**Arquivos `@todo` para ativar:**
+**Arquivos ` ` para ativar:**
 ```text
 cypress/e2e/todo-create-income-entry.feature
 cypress/e2e/todo-create-expense.feature

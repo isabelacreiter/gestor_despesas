@@ -18,7 +18,7 @@ Acesse o guia completo em `/instrucoes` dentro da aplicação. O módulo cobre:
 | `/instrucoes/jenkins` | CI/CD, Jenkinsfile real do projeto, webhook GitHub |
 | `/instrucoes/deploy` | Vercel setup, Firebase env vars, credenciais Jenkins |
 | `/instrucoes/todo` | Features a implementar + guia completo do OCR de nota fiscal |
-| `/instrucoes/cypress` | Semana 1: ativar `@todo`, ver Jenkins falhar, implementar, pipeline verde |
+| `/instrucoes/cypress` | Semana 1: ativar ` `, ver Jenkins falhar, implementar, pipeline verde |
 | `/instrucoes/playwright` | Semana 2: migrar para Playwright, trocar stage no Jenkinsfile |
 | `/instrucoes/testrigor` | Semana 3: testes em linguagem natural, tabela comparativa |
 | `/instrucoes/relatorio` | Checklist por semana, estrutura do relatório, critérios |
@@ -35,7 +35,7 @@ Acesse o guia completo em `/instrucoes` dentro da aplicação. O módulo cobre:
 
 1. Faça fork ou clone o repositório base.
 2. Configure o Firebase, o Jenkins e o webhook do GitHub.
-3. **Ative os cenários Cypress marcados com `@todo`** antes de concluir a implementação — o Jenkins deve falhar nesse ponto.
+3. **Ative os cenários Cypress marcados com ` `** antes de concluir a implementação — o Jenkins deve falhar nesse ponto.
 4. Capture os logs de falha e os screenshots que o Cypress gera automaticamente em `cypress/screenshots/`.
 5. Implemente as features (veja a seção "O que os alunos precisam concluir" abaixo).
 6. Faça os testes passarem, faça push e obtenha a pipeline verde com deploy liberado.
@@ -58,7 +58,7 @@ cypress/e2e/receipt-upload-panel.feature   — 5 cenários
 cypress/e2e/receipt-extraction-api.feature — 3 cenários (API)
 ```
 
-**Stubs `@todo` para os alunos ativarem e completarem:**
+**Stubs ` ` para os alunos ativarem e completarem:**
 
 ```text
 cypress/e2e/todo-create-expense.feature        — persistência Firestore (saídas)
@@ -233,7 +233,7 @@ A aplicação usa uma interface com:
 - Route Handler de OCR criado como ponto de extensão.
 - `Jenkinsfile` com os estágios: Checkout, Install, Unit Tests, Build, E2E Tests, Deploy Vercel.
 - **23 cenários Cypress + Cucumber prontos e passando** para as features já implementadas.
-- Stubs `@todo` com descrição do que testar para cada desafio dos alunos.
+- Stubs ` ` com descrição do que testar para cada desafio dos alunos.
 - Módulo `/instrucoes` com guia completo das 3 semanas.
 
 ## O que os alunos precisam concluir

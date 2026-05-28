@@ -1,30 +1,103 @@
-import { isFirebaseConfigured } from "@/services/firebase";
-import type {
-  IncomeEntry,
-  IncomeEntryInput,
-} from "@/services/income-entry-types";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 
-export async function createIncomeEntry(incomeEntry: IncomeEntryInput) {
-  void incomeEntry;
+import {
+  getFirestoreDatabase,
+  isFirebaseConfigured,
+} from "@/services/firebase";
 
-  // TODO implement: persistir entradas no Firestore em uma coleção dedicada.
-  // TODO implement: validar regras de negócio antes de salvar.
-  // TODO implement: devolver o registro criado para refletir no dashboard.
-  throw new Error(
-    "TODO implement: conclua a feature de entradas antes de salvar no Firestore.",
+export interface IncomeEntryInput {
+  description: string;
+  amount: number;
+  source: string;
+  date: string;
+}
+
+export interface IncomeEntry extends IncomeEntryInput {
+  id: string;
+}
+
+const incomeEntriesCollectionName = "income_entries";
+
+function getIncomeEntriesCollection() {
+  const database = getFirestoreDatabase();
+
+  if (!database) {
+    throw new Error("Firestore não está configurado.");
+  }
+
+  return collection(database, incomeEntriesCollectionName);
+}
+
+export async function createIncomeEntry(
+  incomeEntry: IncomeEntryInput,
+) {
+  if (incomeEntry.amount <= 0) {
+    throw new Error(
+      "O valor da entrada deve ser maior que zero.",
+    );
+  }
+
+  const incomeEntriesCollection =
+    getIncomeEntriesCollection();
+
+  const documentReference = await addDoc(
+    incomeEntriesCollection,
+    {
+      ...incomeEntry,
+      createdAt: new Date().toISOString(),
+    },
   );
+
+  return {
+    id: documentReference.id,
+    ...incomeEntry,
+  };
 }
 
 export function subscribeToIncomeEntries(
-  onIncomeEntriesChange: (entries: IncomeEntry[]) => void,
+  onIncomeEntriesChange: (
+    entries: IncomeEntry[],
+  ) => void,
 ) {
-  if (!isFirebaseConfigured()) {
-    onIncomeEntriesChange([]);
-    return () => undefined;
-  }
+  const incomeEntriesCollection =
+    getIncomeEntriesCollection();
 
-  // TODO implement: sincronizar a coleção de entradas com o Firestore.
-  onIncomeEntriesChange([]);
+  const incomeEntriesQuery = query(
+    incomeEntriesCollection,
+    orderBy("createdAt", "desc"),
+  );
 
-  return () => undefined;
+  return onSnapshot(
+    incomeEntriesQuery,
+    (snapshot) => {
+      const entries = snapshot.docs.map(
+        (snapshotDocument) => {
+          const documentData =
+            snapshotDocument.data();
+
+          return {
+            id: snapshotDocument.id,
+            description: String(
+              documentData.description ?? "",
+            ),
+            amount: Number(
+              documentData.amount ?? 0,
+            ),
+            source: String(
+              documentData.source ?? "Outros",
+            ),
+            date: String(documentData.date ?? ""),
+          };
+        },
+      );
+
+      onIncomeEntriesChange(entries);
+    },
+  );
 }

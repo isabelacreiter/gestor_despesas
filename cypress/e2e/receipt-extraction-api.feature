@@ -13,8 +13,8 @@ Feature: API de extracao de nota fiscal
     Then a resposta deve ter status 415
     And a resposta deve conter o campo "error"
 
-  Scenario: Retorna 501 para arquivo valido enquanto OCR nao e implementado
+  Scenario: Retorna 200 com dados extraidos para arquivo PDF valido
     When faço upload de um arquivo "application/pdf" para "/api/receipt-extraction"
-    Then a resposta deve ter status 501
-    And a resposta deve conter o campo "error"
-    And a resposta deve conter o campo "expectedFields"
+    Then a resposta deve ter status 200
+    And a resposta deve conter o campo "establishmentName"
+    And a resposta deve conter o campo "amount"

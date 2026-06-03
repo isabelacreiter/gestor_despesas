@@ -8,19 +8,8 @@ import {
 
 import {
   getFirestoreDatabase,
-  isFirebaseConfigured,
 } from "@/services/firebase";
-
-export interface IncomeEntryInput {
-  description: string;
-  amount: number;
-  source: string;
-  date: string;
-}
-
-export interface IncomeEntry extends IncomeEntryInput {
-  id: string;
-}
+import type { IncomeEntry, IncomeEntryInput } from "@/services/income-entry-types";
 
 const incomeEntriesCollectionName = "income_entries";
 
@@ -49,7 +38,10 @@ export async function createIncomeEntry(
   const documentReference = await addDoc(
     incomeEntriesCollection,
     {
-      ...incomeEntry,
+      title: incomeEntry.title,
+      amount: incomeEntry.amount,
+      source: incomeEntry.source,
+      date: incomeEntry.date,
       createdAt: new Date().toISOString(),
     },
   );
@@ -83,8 +75,8 @@ export function subscribeToIncomeEntries(
 
           return {
             id: snapshotDocument.id,
-            description: String(
-              documentData.description ?? "",
+            title: String(
+              documentData.title ?? "",
             ),
             amount: Number(
               documentData.amount ?? 0,

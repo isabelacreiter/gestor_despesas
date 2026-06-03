@@ -185,7 +185,7 @@ export function ExpenseDashboardApp() {
             <SummaryCard
               description="Fica em fallback até a turma concluir o cadastro real de entradas."
               tone="forest"
-              title="Entradas"
+              title="Entradas previstas"
               value={formatCurrency(totalIncome)}
             />
             <SummaryCard

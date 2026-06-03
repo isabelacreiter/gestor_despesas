@@ -32,8 +32,8 @@ describe("ReceiptUploadPanel", () => {
     expect(screen.getByText("nota-mercado.pdf")).toBeInTheDocument();
   });
 
-  test.skip(
-    "TODO implement: envia a nota, extrai os dados e salva a despesa",
+  test(
+    "envia a nota, extrai os dados e salva a despesa",
     async () => {
       const user = userEvent.setup();
       const onSubmitExpense = jest.fn().mockResolvedValue(undefined);

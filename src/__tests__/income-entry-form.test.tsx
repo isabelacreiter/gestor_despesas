@@ -16,8 +16,8 @@ describe("IncomeEntryForm", () => {
     ).toBeInTheDocument();
   });
 
-  test.skip(
-    "TODO implement: valida e envia a entrada quando a feature estiver concluida",
+  test(
+    "valida e envia a entrada quando a feature estiver concluida",
     async () => {
       const user = userEvent.setup();
       const onSubmitIncomeEntry = jest.fn().mockResolvedValue(undefined);
@@ -28,7 +28,7 @@ describe("IncomeEntryForm", () => {
         screen.getByLabelText(/descrição da entrada/i),
         "Pagamento do cliente",
       );
-      await user.type(screen.getByLabelText(/valor da entrada/i), "500");
+      await user.type(screen.getByLabelText(/valor \(r\$\)/i), "500");
       await user.click(screen.getByRole("button", { name: /salvar entrada/i }));
 
       expect(onSubmitIncomeEntry).toHaveBeenCalledWith({

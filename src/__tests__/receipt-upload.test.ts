@@ -17,8 +17,8 @@ describe("receipt-upload service", () => {
     ).toMatch(/Envie um arquivo em PDF, JPG, PNG ou WEBP/i);
   });
 
-  test.skip(
-    "TODO implement: converte o retorno da API de OCR em despesa pronta para persistencia",
+  test(
+    "converte o retorno da API de OCR em despesa pronta para persistencia",
     async () => {
       const originalFetch = global.fetch;
       const fetchMock = jest.fn().mockResolvedValue({

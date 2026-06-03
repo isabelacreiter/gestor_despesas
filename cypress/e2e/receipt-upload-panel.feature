@@ -2,6 +2,7 @@ Feature: Painel de upload de nota fiscal
 
   Background:
     Given que acesso a pagina inicial
+    When clico na aba "Nota Fiscal"
 
   Scenario: Renderiza o titulo do painel de upload
     Then vejo o heading "Saída por leitura de PDF ou imagem"

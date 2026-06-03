@@ -18,7 +18,7 @@ export function OverviewChart({
     {
       key: "income",
       label: "Entradas previstas",
-      helper: "Entrada usada como referência no painel inicial.",
+      helper: "Entrada usada como referência. Projeto integrado com Firebase, GitHub, Jenkins e Vercel.",
       value: income,
       fill: "bg-[var(--accent-forest)]",
       glow: "shadow-[0_2px_12px_rgba(31,138,112,0.35)]",
@@ -27,7 +27,7 @@ export function OverviewChart({
     {
       key: "expenses",
       label: "Gastos acumulados",
-      helper: "Despesas salvas no Firestore via saída manual ou upload.",
+      helper: "Uso do orçamento de exemplo. Despesas salvas via saída manual ou upload.",
       value: expenses,
       fill: "bg-[var(--accent-amber)]",
       glow: "shadow-[0_2px_12px_rgba(217,123,44,0.35)]",
@@ -47,7 +47,7 @@ export function OverviewChart({
         </div>
         <div className="flex-shrink-0 rounded-xl border border-[var(--border)] bg-white/60 px-4 py-2.5 text-right">
           <p className="font-mono text-[8.5px] tracking-[0.2em] text-[var(--muted)] uppercase">
-            Saldo projetado
+            Saldo estimado
           </p>
           <p className="mt-0.5 font-mono text-lg font-semibold tabular-nums text-[var(--foreground)]">
             {loading ? (

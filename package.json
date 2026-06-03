@@ -12,20 +12,25 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --headless",
     "test:e2e": "start-server-and-test dev 3000 cypress:run",
-    "test:e2e:ci": "start-server-and-test start 3000 cypress:run"
+    "test:e2e:ci": "start-server-and-test start 3000 cypress:run",
+    "playwright:generate": "npx bddgen",
+    "playwright:run": "npx playwright test",
+    "playwright:report": "npx playwright show-report",
+    "test:playwright": "npm run playwright:generate && npm run playwright:run"
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": "cypress/support/step_definitions/**/*.ts"
   },
   "dependencies": {
     "firebase": "^12.13.0",
-    "next": "^15.5.18",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "next": "^9.3.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -40,9 +45,7 @@
     "eslint-config-next": "16.2.1",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
-    "mochawesome": "^7.1.4",
-    "mochawesome-merge": "^5.1.1",
-    "mochawesome-report-generator": "^6.3.2",
+    "playwright-bdd": "^9.0.0",
     "start-server-and-test": "^3.0.4",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type ChangeEvent } from "react";
+import { useId, useRef, useState, type ChangeEvent } from "react";
 import type { ExpenseInput } from "@/services/expense-types";
 import {
   extractExpenseFromReceipt,
@@ -23,6 +23,7 @@ export function ReceiptUploadPanel({
   onSubmitExpense,
 }: ReceiptUploadPanelProps) {
   const inputId = useId();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [feedback, setFeedback] = useState<PanelFeedback | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -43,7 +44,7 @@ export function ReceiptUploadPanel({
 
     if (nextFile) {
       setFeedback({
-        message: `Arquivo selecionado: ${nextFile.name}`,
+        message: `Arquivo pronto para análise: ${nextFile.name}`,
         tone: "neutral",
       });
       return;
@@ -82,6 +83,7 @@ export function ReceiptUploadPanel({
         tone: "success",
       });
       setSelectedFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
       setFeedback({
         message:
@@ -105,7 +107,7 @@ export function ReceiptUploadPanel({
             Feature 03
           </p>
           <h2 className="mt-0.5 text-[1rem] font-semibold text-[var(--foreground)]">
-            Nota fiscal — PDF ou imagem
+            Saída por leitura de PDF ou imagem
           </h2>
         </div>
       </div>
@@ -155,6 +157,7 @@ export function ReceiptUploadPanel({
             className="field-input cursor-pointer file:mr-3 file:rounded-lg file:border-0 file:bg-[rgba(31,42,34,0.07)] file:px-2.5 file:py-1 file:text-[10.5px] file:font-medium file:text-[var(--foreground)] file:tracking-wide hover:file:bg-[rgba(31,42,34,0.12)]"
             id={inputId}
             onChange={handleFileChange}
+            ref={fileInputRef}
             type="file"
           />
           <p className="mt-1 text-[10.5px] leading-[1.55] text-[var(--muted)]/70">
@@ -191,7 +194,7 @@ export function ReceiptUploadPanel({
             onClick={() => void handleAnalyzeReceipt()}
             type="button"
           >
-            {isAnalyzing ? "Analisando…" : "Analisar nota"}
+            {isAnalyzing ? "Analisando…" : "Analisar nota fiscal"}
           </button>
           <button
             className="rounded-xl border border-[rgba(31,42,34,0.12)] bg-white/70 px-3.5 py-2.5 text-[11.5px] font-semibold tracking-[0.08em] text-[var(--muted)] uppercase transition hover:bg-white hover:text-[var(--foreground)]"

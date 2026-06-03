@@ -1,4 +1,5 @@
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -34,14 +35,50 @@ function getExpensesCollection() {
 }
 
 export async function createExpense(expenseInput: ExpenseInput) {
-  void expenseInput;
+  // Validar regras de negócio para saídas manuais e saídas por OCR.
+  if (expenseInput.amount <= 0) {
+    throw new Error(
+      "O valor da despesa deve ser maior que zero.",
+    );
+  }
 
-  // TODO implement: validar regras de negócio para saídas manuais e saídas por OCR.
-  // TODO implement: persistir a despesa no Firestore mantendo createdAt para ordenação.
-  // TODO implement: retornar o documento criado para refletir no dashboard.
-  throw new Error(
-    "TODO implement: conclua a feature de saídas antes de salvar no Firestore.",
+  if (!expenseInput.title.trim()) {
+    throw new Error(
+      "Informe o título da despesa.",
+    );
+  }
+
+  if (!expenseInput.date) {
+    throw new Error(
+      "Informe a data da despesa.",
+    );
+  }
+
+  if (!expenseInput.category.trim()) {
+    throw new Error(
+      "Selecione a categoria da despesa.",
+    );
+  }
+
+  const expensesCollection = getExpensesCollection();
+
+  // Persistir a despesa no Firestore mantendo createdAt para ordenação.
+  const documentReference = await addDoc(
+    expensesCollection,
+    {
+      title: expenseInput.title,
+      amount: expenseInput.amount,
+      date: expenseInput.date,
+      category: expenseInput.category,
+      createdAt: new Date().toISOString(),
+    },
   );
+
+  // Retornar o documento criado para refletir no dashboard.
+  return {
+    id: documentReference.id,
+    ...expenseInput,
+  };
 }
 
 export async function deleteExpense(id: string) {

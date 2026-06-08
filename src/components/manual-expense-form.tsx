@@ -86,7 +86,7 @@ export function ManualExpenseForm({
     }));
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const validationErrors = validateForm(formState);
 
@@ -99,21 +99,19 @@ export function ManualExpenseForm({
       return;
     }
 
-    try {
-      await onSubmitExpense({
-        amount: Number(formState.amount),
-        category: formState.category,
-        date: formState.date,
-        title: formState.title.trim(),
-      });
-
+    onSubmitExpense({
+      amount: Number(formState.amount),
+      category: formState.category,
+      date: formState.date,
+      title: formState.title.trim(),
+    }).then(() => {
       setFeedback({
         message: "Despesa cadastrada com sucesso.",
         tone: "success",
       });
       setErrors({});
       setFormState(createInitialFormState());
-    } catch (error) {
+    }).catch((error: unknown) => {
       setFeedback({
         message:
           error instanceof Error
@@ -121,7 +119,7 @@ export function ManualExpenseForm({
             : "Nao foi possivel salvar a despesa no momento.",
         tone: "error",
       });
-    }
+    });
   }
 
   return (
@@ -149,7 +147,7 @@ export function ManualExpenseForm({
           .
         </p>
 
-        <form className="space-y-3.5" onSubmit={handleSubmit}>
+        <form className="space-y-3.5" noValidate onSubmit={handleSubmit}>
           <div>
             <label className="field-label" htmlFor="title">
               Título da despesa

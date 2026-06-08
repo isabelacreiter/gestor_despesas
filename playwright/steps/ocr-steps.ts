@@ -37,6 +37,13 @@ Then("vejo mensagem de erro de tipo não suportado", async ({ page }) => {
 });
 
 Then("o campo de arquivo está vazio após envio", async ({ page }) => {
+  await page.waitForFunction(
+    () => {
+      const input = document.querySelector('input[type="file"]') as HTMLInputElement | null;
+      return input !== null && input.value === "";
+    },
+    { timeout: 15_000 },
+  );
   const value = await page.inputValue('input[type="file"]');
   expect(value).toBe("");
 });

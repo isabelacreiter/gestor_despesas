@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(CYPRESS_SKIP_VERIFY=true npx cypress run --headless)",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

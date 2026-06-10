@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(CYPRESS_SKIP_VERIFY=true npx cypress run --headless)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "PowerShell($env:ELECTRON_ENABLE_LOGGING = \"1\"; cd \"c:\\\\Users\\\\isabela_reiter\\\\Downloads\\\\gestor_despesas-main\"; $out = & \"C:\\\\Users\\\\isabela_reiter\\\\AppData\\\\Local\\\\Cypress\\\\Cache\\\\13.14.2\\\\Cypress\\\\Cypress.exe\" --smoke-test --ping=1 2>&1; Write-Output $out; Write-Output \"EXIT: $LASTEXITCODE\")",
+      "PowerShell($env:CYPRESS_SKIP_VERIFY = \"true\"; cd \"c:\\\\Users\\\\isabela_reiter\\\\Downloads\\\\gestor_despesas-main\"; npx cypress run --headless 2>&1 | Select-Object -First 30)",
+      "PowerShell(cd \"c:\\\\Users\\\\isabela_reiter\\\\Downloads\\\\gestor_despesas-main\"; $null = [System.Management.Automation.Language.Parser]::ParseFile\\(\"semana1-gerar-relatorios.ps1\", [ref]$null, [ref]$errors\\); if \\($errors.Count -eq 0\\) { Write-Host \"Sintaxe valida!\" } else { $errors })"
     ]
   }
 }

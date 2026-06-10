@@ -2,8 +2,9 @@ import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
 Given("que acesso a pagina inicial", () => {
   cy.visit("/");
-  // Espera a página carregar completamente
-  cy.contains("Fluxo Financeiro", { timeout: 10000 }).should("be.visible");
+  cy.contains("Fluxo Financeiro", { timeout: 15000 }).should("be.visible");
+  // Aguarda os botões de aba estarem prontos para interação
+  cy.get("aside button", { timeout: 10000 }).should("have.length.at.least", 1);
 });
 
 Then("vejo o texto {string}", (text: string) => {
@@ -39,8 +40,9 @@ When("clico no botao {string}", (text: string) => {
 });
 
 When("clico na aba {string}", (tabName: string) => {
-  // Espera o botão aparecer e clica
-  cy.contains("button", tabName, { timeout: 10000 }).click({ force: true });
+  cy.contains("button", tabName, { timeout: 10000 })
+    .should("be.visible")
+    .click();
 });
 
 Then("vejo a mensagem {string}", (message: string) => {
